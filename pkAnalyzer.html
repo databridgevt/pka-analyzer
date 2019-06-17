@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>pkAnalyzer</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="styles.css">
+	<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+	<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+	<script src="https://kit.fontawesome.com/d27b01dd4f.js"></script>
+</head>
+
+<body>
+	<h2 align="center"><b>pkAnalyzer 2.0</b></h2>
+	<div class="container">
+		<hr>
+		<div class="row">
+			<div class="col-3">
+				<div class="user_input_section">
+					<div id="acid_selection">
+						<button onclick="toggleDropdown()" class="main_buttons">Select Acid &#x25BC;</button>
+						<div class="dropdown">
+							<div id="myDropdown" class="dropdown-content">
+								<input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
+								<div id="acid_buttons">
+									<button onclick="getAcidPkas(4.7, null, null, 'Acetic Acid')">Acetic Acid</button>
+									<button onclick="getAcidPkas(2.34,  9.69,   null, 'Alanine')">Alanine</button>
+									<button onclick="getAcidPkas(9.3, null, null, 'Ammonium Cation')">Ammonium Cation</button>
+									<button onclick="getAcidPkas(2.17,  9.04, 12.48, 'Arginine')">Arginine</button>
+									<button onclick="getAcidPkas(2.02,  8.80,   null, 'Asparagine')">Asparagine</button>
+									<button onclick="getAcidPkas(1.88,  9.60,   3.65, 'Aspartic acid')">Aspartic acid</button>
+									<button onclick="getAcidPkas(9.3, null, null, 'Boric Acid')">Boric Acid</button>
+									<button onclick="getAcidPkas(6.3, 10.3, null, 'Carboninc Acid')">Carbonic Acid</button>
+									<button onclick="getAcidPkas(3.13, 4.76, 6.4, 'Citric Acid')">Citric Acid</button>
+									<button onclick="getAcidPkas(1.96,  8.18,   null, 'Cysteine')">Cysteine</button>
+									<button onclick="getAcidPkas(2.19,  9.67,   4.25, 'Glutamic Acid')">Glutamic Acid</button>
+									<button onclick="getAcidPkas(2.17,  9.13,   null, 'Glutamine')">Glutamine</button>
+									<button onclick="getAcidPkas(2.34,  9.60,   null, 'Glycine')">Glycine</button>
+									<button onclick="getAcidPkas(1.82,  9.17,   6.00, 'Histidine')">Histidine</button>
+									<button onclick="getAcidPkas(-3, null, null, 'Hydrocholoric Acid')">Hydrochloric Acid</button>
+									<button onclick="getAcidPkas(9.3, null, null, 'Hydrocyanic Acid')">Hydrocyanic Acid</button>
+									<button onclick="getAcidPkas(3.2, null, null, 'Hydroflouric Acid')">Hydrofluoric Acid</button>
+									<button onclick="getAcidPkas(7.1, 14, null, 'Hydrogen Sulfate')">Hydrogen Sulfide</button>
+									<button onclick="getAcidPkas(7.5, null, null, 'Hypochlorous Acid')">Hypochlorous Acid</button>
+									<button onclick="getAcidPkas(0.8, null, null, 'Iodic Acid')">Iodic Acid</button>
+									<button onclick="getAcidPkas(2.36,  9.60,   null, 'Isoleucine')">Isoleucine</button>
+									<button onclick="getAcidPkas(3.86, null, null, 'Lactic Acid')">Lactic Acid</button>
+									<button onclick="getAcidPkas(2.36,  9.60,   null, 'Leucine')">Leucine</button>
+									<button onclick="getAcidPkas(2.18,  8.95, 10.53, 'Lysine')">Lysine</button>
+									<button onclick="getAcidPkas(2.28,  9.21,   null, 'Methionine')">Methionine</button>
+									<button onclick="getAcidPkas(-0.013, null, null, 'Nitric Acid')">Nitric Acid</button>
+									<button onclick="getAcidPkas(4.5, null, null, 'Nitrous Acid')">Nitrous Acid</button>
+									<button onclick="getAcidPkas(1.46, 4.4, null, 'Oxalic Acid')">Oxalic Acid</button>
+									<button onclick="getAcidPkas(-7, null, null, 'Percloric Acid')">Percloric Acid</button>
+									<button onclick="getAcidPkas(9.9, null, null, 'Phenol')">Phenol</button>
+									<button onclick="getAcidPkas(1.83,  9.13,   null, 'Phenylalanine')">Phenylalanine</button>
+									<button onclick="getAcidPkas(2.1, 7.2, 12.3, 'Phosphoric Acid')">Phosphoric Acid</button>
+									<button onclick="getAcidPkas(1.99, 10.60,   null, 'Proline')">Proline</button>
+									<button onclick="getAcidPkas(2.21,  9.15,   null, 'Serine')">Serine</button>
+									<button onclick="getAcidPkas(-3, 2, null, 'Sulfuric Acid')">Sulfuric Acid</button>
+									<button onclick="getAcidPkas(2.09,  9.10,   null, 'Threonine')">Threonine</button>
+									<button onclick="getAcidPkas(2.83,  9.39,   null, 'Tryptophan')">Tryptophan</button>
+									<button onclick="getAcidPkas(2.20,  9.11,   null, 'Tyrosine')">Tyrosine</button>
+									<button onclick="getAcidPkas(2.32,  9.62,   null, 'Valine')">Valine</button>
+									<button onclick="getAcidPkas(14, null, null, 'Water')">Water</button>
+								</div>
+							</div>
+						</div>
+						<div id="userPkaInput">
+							<h3>or</h3>
+							<h3>Enter pka values:</h3>
+							<div id="pkaInputs">
+								<input type="text" placeholder="pka1" id="pka1input">
+								<input type="text" placeholder="pka2" id="pka2input">
+								<input type="text" placeholder="pka3" id="pka3input">
+							</div>
+							<div class="divider"></div>
+							<button class="main_buttons" id="save-btn">Graph pka values</button>
+						</div>
+
+					</div>
+					<hr>
+					<div id="save_directions">
+						<h3><b>Select pH range to save:</b></h3>
+						<div id="pHRangeInputs">
+							<input type="text" placeholder="start" id="pHstart">
+							<input type="text" placeholder="final" id="pHfinal">
+						</div>
+						<button value="Biochem 4" onclick="saveData()" class="main_buttons" id="save-data-button">Save Data File<i class="fas fa-info-circle fa-1x" id="info" onclick="infoClick()"></i></button>
+					</div>
+				</div>
+			</div> <!-- End Left Panel -->
+			<div class="col-6">
+				<div class="visual_section">
+					<div id="graph" style="width:100%;min-height:500px;"><i class="fas fa-chart-line fa-5x" id="plot-icon"></i></div>
+					<div id="data_table">
+						<table>
+							<tr>
+								<td><b>pH</b></td>
+								<td><b>0.0</b></td>
+								<td><b>1.0</b></td>
+								<td><b>2.0</b></td>
+								<td><b>3.0</b></td>
+								<td><b>4.0</b></td>
+								<td><b>5.0</b></td>
+								<td><b>6.0</b></td>
+								<td><b>7.0</b></td>
+								<td><b>8.0</b></td>
+								<td><b>9.0</b></td>
+								<td><b>10.0</b></td>
+								<td><b>11.0</b></td>
+								<td><b>12.0</b></td>
+								<td><b>13.0</b></td>
+								<td><b>14.0</b></td>
+							</tr>
+							<tr id="a0col">
+								<td><b>&alpha;0</b></td>
+								<td id="00">-</td>
+								<td id="01">-</td>
+								<td id="02">-</td>
+								<td id="03">-</td>
+								<td id="04">-</td>
+								<td id="05">-</td>
+								<td id="06">-</td>
+								<td id="07">-</td>
+								<td id="08">-</td>
+								<td id="09">-</td>
+								<td id="010">-</td>
+								<td id="011">-</td>
+								<td id="012">-</td>
+								<td id="013">-</td>
+								<td id="014">-</td>
+							</tr>
+							<tr id="a1col">
+								<td><b>&alpha;1</b></td>
+								<td id="10">-</td>
+								<td id="11">-</td>
+								<td id="12">-</td>
+								<td id="13">-</td>
+								<td id="14">-</td>
+								<td id="15">-</td>
+								<td id="16">-</td>
+								<td id="17">-</td>
+								<td id="18">-</td>
+								<td id="19">-</td>
+								<td id="110">-</td>
+								<td id="111">-</td>
+								<td id="112">-</td>
+								<td id="113">-</td>
+								<td id="114">-</td>
+							</tr>
+							<tr id="a2col">
+								<td><b>&alpha;2</b></td>
+								<td id="20">-</td>
+								<td id="21">-</td>
+								<td id="22">-</td>
+								<td id="23">-</td>
+								<td id="24">-</td>
+								<td id="25">-</td>
+								<td id="26">-</td>
+								<td id="27">-</td>
+								<td id="28">-</td>
+								<td id="29">-</td>
+								<td id="210">-</td>
+								<td id="211">-</td>
+								<td id="212">-</td>
+								<td id="213">-</td>
+								<td id="214">-</td>
+							</tr>
+							<tr id="a3col">
+								<td><b>&alpha;3</b></td>
+								<td id="30">-</td>
+								<td id="31">-</td>
+								<td id="32">-</td>
+								<td id="33">-</td>
+								<td id="34">-</td>
+								<td id="35">-</td>
+								<td id="36">-</td>
+								<td id="37">-</td>
+								<td id="38">-</td>
+								<td id="39">-</td>
+								<td id="310">-</td>
+								<td id="311">-</td>
+								<td id="312">-</td>
+								<td id="313">-</td>
+								<td id="314">-</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div> <!-- End Middle Panel -->
+			<div class="col-3">
+				<div id="calculatorSection">
+					<input type="text" placeholder="Enter pH" id="userPH">
+					<div class="divider"></div>
+					<button onclick="displayFractions()" class="main_buttons">Calculate Fractions</button>
+					<h3 id="userAlpha0">&alpha;0 = </h3>
+					<h3 id="userAlpha1">&alpha;1 = </h3>
+					<h3 id="userAlpha2">&alpha;2 = </h3>
+					<h3 id="userAlpha3">&alpha;3 = </h3>
+				</div>
+			</div> <!-- End Right Panel -->
+		</div>
+	</div>
+	<script src="index.js" charset="utf-8"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+
+</html>
